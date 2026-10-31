@@ -59,7 +59,7 @@ SettingsPage {
 
     SectionCard {
         id: heroCard
-        title: "This shell"
+        title: "Shell này"
 
         // The mark: the same cyan-mint ring the selected tab has, big.
         Item {
@@ -122,7 +122,7 @@ SettingsPage {
             }
 
             Text {
-                text: "A Quickshell shell for Hyprland, styled like a phone."
+                text: "Shell Quickshell cho Hyprland, thiết kế theo kiểu điện thoại."
                 color: mt.pInkSub
                 font.family: mt.fontFamily
                 font.pixelSize: 17
@@ -155,11 +155,11 @@ SettingsPage {
     }
 
     SectionCard {
-        title: "Welcome tour"
+        title: "Hướng dẫn chào mừng"
 
         SettingAction {
             icon: "waving_hand"
-            label: "Play welcome screen"
+            label: "Phát màn hình chào mừng"
             detail: GameModeService.enabled ? "Not while Game Mode is on" : "Replay the first-start tour"
             onActivated: {
                 // Close the settings phone first so the tour opens over the
@@ -172,7 +172,7 @@ SettingsPage {
     }
 
     SectionCard {
-        title: "Update"
+        title: "Cập nhật"
 
         // Status, as a big sentence with its icon.
         Row {
@@ -216,7 +216,7 @@ SettingsPage {
 
         SettingAction {
             icon: "update"
-            label: "Check for updates"
+            label: "Kiểm tra cập nhật"
             detail: UpdateService.status === "checking" ? "Checking…"
                 : (UpdateService.checkedAt > 0 ? "Checked " + Qt.formatTime(new Date(UpdateService.checkedAt), "hh:mm") : "")
             busy: UpdateService.status === "checking"
@@ -226,7 +226,7 @@ SettingsPage {
         SettingAction {
             visible: UpdateService.status === "behind" && UpdateService.canApply
             icon: "download"
-            label: "Update now"
+            label: "Cập nhật ngay"
             detail: UpdateService.updating ? (UpdateService.isGit ? "Pulling…" : "Downloading…")
                 : (UpdateService.updateError !== "" ? "Didn't apply, try again"
                 : UpdateService.updateMessage !== "" ? UpdateService.updateMessage
@@ -247,7 +247,7 @@ SettingsPage {
 
         SettingToggle {
             icon: "notifications_active"
-            label: "Tell me about updates"
+            label: "Thông báo khi có cập nhật"
             checked: SettingsService.flag("updates.shellNotify")
             onToggled: SettingsService.toggle("updates.shellNotify")
         }
@@ -256,7 +256,7 @@ SettingsPage {
             width: page.halfWidth
             visible: SettingsService.flag("updates.shellNotify")
             icon: "schedule"
-            label: "Look every"
+            label: "Kiểm tra mỗi"
             from: 1
             to: 48
             step: 1
@@ -337,7 +337,7 @@ SettingsPage {
     }
 
     SectionCard {
-        title: "What's new"
+        title: "Có gì mới"
 
         Text {
             visible: UpdateService.changelog.length === 0
@@ -401,7 +401,7 @@ SettingsPage {
     }
 
     SectionCard {
-        title: "Credits"
+        title: "Ghi công"
 
         Repeater {
             model: [

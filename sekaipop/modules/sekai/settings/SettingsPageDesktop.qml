@@ -20,18 +20,18 @@ SettingsPage {
     }
 
     SectionCard {
-        title: "Wallpaper"
+        title: "Hình nền"
 
         SettingAction {
             icon: "wallpaper"
-            label: "Wallpapers"
-            detail: "Open the picker"
+            label: "Hình nền"
+            detail: "Mở trình chọn"
             onActivated: if (page.host) page.host.wallpapersRequested()
         }
 
         SettingAction {
             icon: "folder_open"
-            label: "Wallpaper folder"
+            label: "Thư mục hình nền"
             detail: WallpaperService.directoryShort + (WallpaperService.customFolder ? "" : " (default)")
             onActivated: WallpaperService.pickFolder("settings")
         }
@@ -39,36 +39,36 @@ SettingsPage {
         SettingAction {
             visible: WallpaperService.customFolder
             icon: "restart_alt"
-            label: "Use the default folder"
-            detail: "Back to ~/Pictures/Wallpapers"
+            label: "Dùng thư mục mặc định"
+            detail: "Trở về ~/Pictures/Wallpapers"
             onActivated: WallpaperService.resetFolder()
         }
         SettingToggle {
             icon: "image"
-            label: "Desktop wallpaper"
-            detail: "ON or OFF the desktop wallpaper"
+            label: "Hình nền desktop"
+            detail: "Bật hoặc tắt hình nền desktop"
             checked: SettingsService.flag("wallpaper.enabled")
             onToggled: SettingsService.toggle("wallpaper.enabled")
         }
         SettingChoice {
-            label: "Transition"
-            sublabel: "How one wallpaper replaces another (Random: a different one each time)"
+            label: "Chuyển cảnh"
+            sublabel: "Hiệu ứng khi đổi hình nền (Ngẫu nhiên: mỗi lần một hiệu ứng)"
             current: WallpaperService.transitionSetting
             options: [
-                { id: "sekaiRing", label: "Ring", icon: "radio_button_unchecked" },
-                { id: "star", label: "Star", icon: "star" },
-                { id: "sekaiIris", label: "Iris", icon: "lens_blur" },
-                { id: "sekaiFlash", label: "Flash", icon: "flash_on" },
-                { id: "diagonalBlocks", label: "Blocks", icon: "grid_view" },
-                { id: "fade", label: "Fade", icon: "blur_on" },
-                { id: "random", label: "Random", icon: "shuffle" }
+                { id: "sekaiRing", label: "Vòng tròn", icon: "radio_button_unchecked" },
+                { id: "star", label: "Ngôi sao", icon: "star" },
+                { id: "sekaiIris", label: "Mống mắt", icon: "lens_blur" },
+                { id: "sekaiFlash", label: "Chớp sáng", icon: "flash_on" },
+                { id: "diagonalBlocks", label: "Khối", icon: "grid_view" },
+                { id: "fade", label: "Mờ dần", icon: "blur_on" },
+                { id: "random", label: "Ngẫu nhiên", icon: "shuffle" }
             ]
             onPicked: id => SettingsService.set("wallpaper.transition", id)
         }
 
         SettingToggle {
             icon: "palette"
-            label: "Transition colours"
+            label: "Màu chuyển cảnh"
             detail: SettingsService.flag("wallpaper.themedTransition") ? "Follow the theme (or matugen)" : "Classic white, pink and cyan"
             checked: SettingsService.flag("wallpaper.themedTransition")
             onToggled: SettingsService.toggle("wallpaper.themedTransition")
@@ -77,7 +77,7 @@ SettingsPage {
         SettingSlider {
             width: page.halfWidth
             icon: "timelapse"
-            label: "Ring, star and blocks speed"
+            label: "Tốc độ vòng tròn, ngôi sao và khối"
             from: 500
             to: 3000
             step: 100
@@ -88,7 +88,7 @@ SettingsPage {
 
         SettingToggle {
             icon: "desktop_windows"
-            label: "One wallpaper per monitor"
+            label: "Hình nền riêng cho từng màn hình"
             detail: SettingsService.flag("wallpaper.perMonitor") ? "The picker sets the monitor it is on" : "Same wallpaper on every monitor"
             checked: SettingsService.flag("wallpaper.perMonitor")
             onToggled: WallpaperService.setPerMonitor(!SettingsService.flag("wallpaper.perMonitor"))
@@ -98,7 +98,7 @@ SettingsPage {
         // monitor wear its theme; the theme pickers set the monitor they are open on.
         SettingToggle {
             icon: "palette"
-            label: "One theme per monitor"
+            label: "Chủ đề riêng cho từng màn hình"
             detail: SettingsService.flag("theme.perMonitor") ? "The theme picker sets the monitor it is on" : "Same theme on every monitor"
             checked: SettingsService.flag("theme.perMonitor")
             onToggled: SettingsService.set("theme.perMonitor", !SettingsService.flag("theme.perMonitor"))
@@ -106,7 +106,7 @@ SettingsPage {
 
         SettingToggle {
             icon: "lock"
-            label: "Separate Lockscreen Wallpaper"
+            label: "Hình nền khóa riêng"
             detail: SettingsService.flag("wallpaper.separateLock") ? "The lockscreen keeps its own" : "Lockscreen shows the desktop's"
             checked: SettingsService.flag("wallpaper.separateLock")
             onToggled: WallpaperService.setSeparateLock(!SettingsService.flag("wallpaper.separateLock"))
@@ -116,15 +116,15 @@ SettingsPage {
         SettingAction {
             visible: SettingsService.flag("wallpaper.separateLock")
             icon: "wallpaper"
-            label: "Lockscreen wallpaper"
+            label: "Hình nền màn hình khóa"
             detail: page.lockName !== "" ? page.lockName : "Open the picker"
             onActivated: if (page.host) page.host.lockWallpapersRequested()
         }
 
         SettingToggle {
             icon: "photo_size_select_large"
-            label: "Thumbnail cache"
-            detail: "Small copies for the picker"
+            label: "Bộ nhớ đệm ảnh thu nhỏ"
+            detail: "Ảnh nhỏ dùng trong trình chọn"
             checked: SettingsService.flag("wallpaper.thumbs")
             onToggled: {
                 SettingsService.toggle("wallpaper.thumbs")
@@ -134,8 +134,8 @@ SettingsPage {
 
         SettingAction {
             icon: "delete_sweep"
-            label: "Clear thumbnails"
-            detail: "Made again when needed"
+            label: "Xóa ảnh thu nhỏ"
+            detail: "Sẽ tạo lại khi cần"
             onActivated: {
                 WallpaperService.clearThumbCache()
                 WallpaperService.scanThumbs()
@@ -144,28 +144,28 @@ SettingsPage {
 
         SettingAction {
             icon: "shuffle"
-            label: "Random wallpaper"
-            detail: "Pick one now"
+            label: "Hình nền ngẫu nhiên"
+            detail: "Chọn ngay"
             onActivated: WallpaperService.random()
         }
 
         SettingSlider {
             width: page.halfWidth
             icon: "autorenew"
-            label: "Change randomly every"
+            label: "Đổi ngẫu nhiên mỗi"
             from: 0
             to: 240
             step: 5
             suffix: " min"
             specialValue: 0
-            specialText: "Never"
+            specialText: "Không bao giờ"
             value: SettingsService.get("wallpaper.randomMinutes")
             onMoved: v => SettingsService.set("wallpaper.randomMinutes", v)
         }
 
         SettingToggle {
             icon: "movie"
-            label: "Play video wallpapers"
+            label: "Phát hình nền video"
             detail: !SettingsService.flag("wallpaper.video") ? "First frame only"
                 : SettingsService.flag("wallpaper.mpvpaper") ? "Through mpvpaper" : "Needs qt6-multimedia"
             checked: SettingsService.flag("wallpaper.video")
@@ -174,39 +174,39 @@ SettingsPage {
 
         SettingToggle {
             icon: "speed"
-            label: "Use mpvpaper for video"
+            label: "Dùng mpvpaper cho video"
             detail: SettingsService.flag("wallpaper.mpvpaper") ? "Hardware decoding, lighter" : "Built-in player"
             checked: SettingsService.flag("wallpaper.mpvpaper")
             onToggled: SettingsService.toggle("wallpaper.mpvpaper")
         }
 
         SettingChoice {
-            label: "Pause video when"
-            sublabel: "Stops the live wallpaper while it is covered, to save the GPU"
+            label: "Tạm dừng video khi"
+            sublabel: "Dừng hình nền động khi bị che để giảm tải GPU"
             current: SettingsService.get("wallpaper.videoPause")
             options: [
-                { id: "never", label: "Never", icon: "play_arrow" },
-                { id: "fullscreen", label: "Fullscreen", icon: "fullscreen" },
-                { id: "windows", label: "Any window", icon: "web_asset" }
+                { id: "never", label: "Không bao giờ", icon: "play_arrow" },
+                { id: "fullscreen", label: "Toàn màn hình", icon: "fullscreen" },
+                { id: "windows", label: "Có cửa sổ", icon: "web_asset" }
             ]
             onPicked: id => SettingsService.set("wallpaper.videoPause", id)
         }
 
         SettingChoice {
-            label: "When it pauses"
-            sublabel: "Pause continues where it stopped; Restart starts the video over"
+            label: "Khi tạm dừng"
+            sublabel: "Tạm dừng tiếp tục từ vị trí cũ; Khởi động lại phát video từ đầu"
             current: SettingsService.get("wallpaper.videoResume")
             options: [
-                { id: "pause", label: "Pause", icon: "pause" },
-                { id: "restart", label: "Restart", icon: "replay" }
+                { id: "pause", label: "Tạm dừng", icon: "pause" },
+                { id: "restart", label: "Khởi động lại", icon: "replay" }
             ]
             onPicked: id => SettingsService.set("wallpaper.videoResume", id)
         }
 
         SettingToggle {
             icon: "layers"
-            label: "Parallax"
-            detail: "Drifts with the workspace"
+            label: "Hiệu ứng thị sai"
+            detail: "Di chuyển theo không gian làm việc"
             checked: SettingsService.flag("wallpaper.parallax")
             onToggled: SettingsService.toggle("wallpaper.parallax")
         }
@@ -214,7 +214,7 @@ SettingsPage {
         SettingSlider {
             width: page.halfWidth
             icon: "zoom_out_map"
-            label: "Parallax amount"
+            label: "Mức thị sai"
             from: 2
             to: 30
             step: 1
@@ -226,7 +226,7 @@ SettingsPage {
         SettingSlider {
             width: page.halfWidth
             icon: "grid_view"
-            label: "Parallax workspaces"
+            label: "Không gian làm việc thị sai"
             from: 2
             to: 10
             step: 1
@@ -236,10 +236,10 @@ SettingsPage {
     }
 
     SectionCard {
-        title: "Widgets"
+        title: "Tiện ích"
 
         SettingChoice {
-            label: "Default monitor"
+            label: "Màn hình mặc định"
             sublabel: "Where a widget goes when it has no monitor of its own, or its monitor is switched off. Chosen by name, so a restart cannot swap them"
             current: DesktopMonitors.defaultScreen
             options: DesktopMonitors.choices
@@ -247,16 +247,16 @@ SettingsPage {
         }
 
         SettingChoice {
-            label: "To-Do monitor"
-            sublabel: "Automatic is the default monitor"
+            label: "Màn hình việc cần làm"
+            sublabel: "Tự động sử dụng màn hình mặc định"
             current: DesktopMonitors.homes["todo"] ?? ""
             options: DesktopMonitors.choices
             onPicked: id => DesktopMonitors.setHome("todo", id)
         }
 
         SettingChoice {
-            label: "Sticky Notes monitor"
-            sublabel: "Automatic is the default monitor"
+            label: "Màn hình ghi chú"
+            sublabel: "Tự động sử dụng màn hình mặc định"
             current: DesktopMonitors.homes["notes"] ?? ""
             options: DesktopMonitors.choices
             onPicked: id => DesktopMonitors.setHome("notes", id)
@@ -264,50 +264,50 @@ SettingsPage {
 
         SettingToggle {
             icon: "schedule"
-            label: "Clock"
+            label: "Đồng hồ"
             checked: ClockService.shown
             onToggled: ClockService.setShown(!ClockService.shown)
         }
 
         SettingToggle {
             icon: "person"
-            label: "User card"
+            label: "Thẻ người dùng"
             checked: UserCardService.shown
             onToggled: UserCardService.setShown(!UserCardService.shown)
         }
 
         SettingToggle {
             icon: "partly_cloudy_day"
-            label: "Weather card"
+            label: "Thẻ thời tiết"
             detail: "Place and unit: Settings > General > Weather"
             checked: WeatherCardService.shown
             onToggled: WeatherCardService.setShown(!WeatherCardService.shown)
         }
 
         SettingChoice {
-            label: "Weather card style"
-            sublabel: "Minimal keeps the plate and the next hours, nothing else. Same 2 x 2 size"
+            label: "Kiểu thẻ thời tiết"
+            sublabel: "Tối giản chỉ giữ nền và dự báo các giờ tới. Cùng kích thước 2 x 2"
             current: WeatherCardService.style
             options: [
-                { id: "classic", label: "Classic", icon: "dashboard" },
-                { id: "minimal", label: "Minimal", icon: "crop_square" }
+                { id: "classic", label: "Cổ điển", icon: "dashboard" },
+                { id: "minimal", label: "Tối giản", icon: "crop_square" }
             ]
             onPicked: id => WeatherCardService.setStyle(id)
         }
 
         SettingToggle {
             icon: "calendar_month"
-            label: "Calendar card"
+            label: "Thẻ lịch"
             checked: CalendarCardService.shown
             onToggled: CalendarCardService.setShown(!CalendarCardService.shown)
         }
 
         SettingChoice {
-            label: "Calendar card size"
-            sublabel: "2 x 2 is the same size as the clock, user and weather cards"
+            label: "Kích thước thẻ lịch"
+            sublabel: "2 x 2 có cùng kích thước với thẻ đồng hồ, người dùng và thời tiết"
             current: CalendarCardService.size
             options: [
-                { id: "full", label: "Full", icon: "open_in_full" },
+                { id: "full", label: "Đầy đủ", icon: "open_in_full" },
                 { id: "2x2", label: "2 x 2", icon: "close_fullscreen" }
             ]
             onPicked: id => CalendarCardService.setSize(id)
@@ -315,17 +315,17 @@ SettingsPage {
 
         SettingToggle {
             icon: "palette"
-            label: "Palette card"
+            label: "Thẻ bảng màu"
             checked: PaletteService.shown
             onToggled: PaletteService.setShown(!PaletteService.shown)
         }
 
         SettingChoice {
-            label: "Palette card size"
-            sublabel: "2 x 2 is the same size as the clock, user and weather cards"
+            label: "Kích thước thẻ bảng màu"
+            sublabel: "2 x 2 có cùng kích thước với thẻ đồng hồ, người dùng và thời tiết"
             current: PaletteService.size
             options: [
-                { id: "full", label: "Full", icon: "open_in_full" },
+                { id: "full", label: "Đầy đủ", icon: "open_in_full" },
                 { id: "2x2", label: "2 x 2", icon: "close_fullscreen" }
             ]
             onPicked: id => PaletteService.setSize(id)
@@ -333,14 +333,14 @@ SettingsPage {
 
         SettingToggle {
             icon: "lyrics"
-            label: "Lyrics"
-            detail: "The words of the song that is playing, on the desktop"
+            label: "Lời bài hát"
+            detail: "Hiển thị lời bài hát đang phát trên màn hình nền"
             checked: LyricsService.shown
             onToggled: LyricsService.setShown(!LyricsService.shown)
         }
 
         SettingChoice {
-            label: "Lyrics source"
+            label: "Nguồn lời bài hát"
             sublabel: "Auto takes the best one for each song, Boidu first. Pick one to use it whenever it has the song"
             current: LyricsService.preferred
             options: [{ id: "auto", label: "Auto", icon: "auto_awesome" }].concat(LyricsService.providers.map(p => ({ id: p.id, label: p.name })))
@@ -349,7 +349,7 @@ SettingsPage {
 
         SettingToggle {
             icon: "text_fields"
-            label: "Word by word"
+            label: "Từng từ"
             detail: "Light each word when it is sung, where a source has the timing. Off lights the whole line at once"
             checked: LyricsService.wordsOn
             onToggled: LyricsService.setWords(!LyricsService.wordsOn)
@@ -365,17 +365,17 @@ SettingsPage {
 
         SettingToggle {
             icon: "task_alt"
-            label: "To-Do"
+            label: "Việc cần làm"
             checked: TodoService.shown
             onToggled: TodoService.setShown(!TodoService.shown)
         }
 
         SettingChoice {
             label: "To-Do size"
-            sublabel: "2 x 2 is the same size as the clock, user and weather cards"
+            sublabel: "2 x 2 có cùng kích thước với thẻ đồng hồ, người dùng và thời tiết"
             current: TodoService.size
             options: [
-                { id: "full", label: "Full", icon: "open_in_full" },
+                { id: "full", label: "Đầy đủ", icon: "open_in_full" },
                 { id: "2x2", label: "2 x 2", icon: "close_fullscreen" }
             ]
             onPicked: id => TodoService.setSize(id)
@@ -383,7 +383,7 @@ SettingsPage {
 
         SettingToggle {
             icon: "sticky_note_2"
-            label: "Sticky notes"
+            label: "Ghi chú"
             detail: "Move, resize, pin. Esc leaves the text"
             checked: NotesService.active
             onToggled: NotesService.setShown(!NotesService.active)
@@ -418,7 +418,7 @@ SettingsPage {
 
         SettingToggle {
             icon: EditMode.widgetsLocked ? "lock" : "lock_open"
-            label: "Lock widgets"
+            label: "Khóa tiện ích"
             detail: EditMode.widgetsLocked ? "Move in Edit Desktop" : "Drag on the desktop"
             checked: EditMode.widgetsLocked
             onToggled: EditMode.toggleWidgetsLocked()
@@ -444,7 +444,7 @@ SettingsPage {
                 { id: "sekai", label: "Sekai", icon: "piano" },
                 { id: "bars", label: "Bars", icon: "equalizer" },
                 { id: "aurora", label: "Aurora", icon: "blur_on" },
-                { id: "ring", label: "Ring", icon: "radio_button_unchecked" },
+                { id: "ring", label: "Vòng tròn", icon: "radio_button_unchecked" },
                 { id: "dots", label: "Dots", icon: "more_horiz" },
                 { id: "mirror", label: "Mirror", icon: "vertical_align_center" },
                 { id: "tide", label: "Tide", icon: "waves" },
@@ -506,7 +506,7 @@ SettingsPage {
             sublabel: "Lite for weak laptops"
             current: String(VisualizerService.perf)
             options: [
-                { id: "0", label: "Full" },
+                { id: "0", label: "Đầy đủ" },
                 { id: "1", label: "Balanced" },
                 { id: "2", label: "Lite" }
             ]
@@ -679,26 +679,26 @@ SettingsPage {
         }
 
         SettingChoice {
-            label: "Style"
+            label: "Kiểu"
             sublabel: "How the dock is drawn"
             current: SettingsService.get("dock.style")
             options: [
-                { id: "float", label: "Float", edge: SettingsService.get("dock.position"), variant: "float" },
-                { id: "transparent", label: "Transparent", edge: SettingsService.get("dock.position"), variant: "transparent" },
-                { id: "capsule", label: "Capsule", edge: SettingsService.get("dock.position"), variant: "capsule" }
+                { id: "float", label: "Nổi", edge: SettingsService.get("dock.position"), variant: "float" },
+                { id: "transparent", label: "Trong suốt", edge: SettingsService.get("dock.position"), variant: "transparent" },
+                { id: "capsule", label: "Viên thuốc", edge: SettingsService.get("dock.position"), variant: "capsule" }
             ]
             onPicked: id => SettingsService.set("dock.style", id)
         }
 
         SettingChoice {
-            label: "Position"
+            label: "Vị trí"
             sublabel: "Which edge the dock sits on"
             current: SettingsService.get("dock.position")
             options: [
-                { id: "bottom", label: "Bottom", edge: "bottom" },
-                { id: "top", label: "Top", edge: "top" },
-                { id: "left", label: "Left", edge: "left" },
-                { id: "right", label: "Right", edge: "right" }
+                { id: "bottom", label: "Dưới", edge: "bottom" },
+                { id: "top", label: "Trên", edge: "top" },
+                { id: "left", label: "Trái", edge: "left" },
+                { id: "right", label: "Phải", edge: "right" }
             ]
             onPicked: id => SettingsService.set("dock.position", id)
         }
@@ -730,7 +730,7 @@ SettingsPage {
                 : (SettingsService.flag("dock.autoHide") ? "auto" : "off")
             options: [
                 { id: "off", label: "Always shown", icon: "visibility" },
-                { id: "auto", label: "Auto-hide", icon: "vertical_align_bottom" },
+                { id: "auto", label: "Tự động ẩn", icon: "vertical_align_bottom" },
                 { id: "smart", label: "Smart hide", icon: "auto_awesome" }
             ]
             onPicked: id => {
@@ -1266,7 +1266,7 @@ SettingsPage {
 
         SettingStepper {
             icon: "format_size"
-            label: "Size"
+            label: "Kích thước"
             from: 6
             to: 24
             step: 1
@@ -1335,7 +1335,7 @@ SettingsPage {
 
         SettingToggle {
             icon: "sports_esports"
-            label: "Game Mode"
+            label: "Chế độ chơi game"
             detail: page.src && page.src.gameModeOn ? "Bare bar, no dock or widgets" : "OFF"
             checked: page.src ? page.src.gameModeOn : false
             onToggled: if (page.src) page.src.toggleGameMode()
@@ -1352,7 +1352,7 @@ SettingsPage {
 
         SettingToggle {
             icon: "nightlight"
-            label: "Night Light"
+            label: "Ánh sáng đêm"
             detail: page.src && page.src.nightLightOn ? page.src.nightLightTemperature + "K" : "OFF"
             checked: page.src ? page.src.nightLightOn : false
             onToggled: if (page.src) page.src.toggleNightLight()

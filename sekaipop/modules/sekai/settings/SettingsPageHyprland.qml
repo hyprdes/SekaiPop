@@ -127,7 +127,7 @@ SettingsPage {
     SectionCard {
         visible: HyprlandSettings.isLua && !HyprlandSettings.linked
         height: visible ? implicitHeight : 0
-        title: "One-time setup"
+        title: "Thiết lập một lần"
 
         Column {
             width: page.fullWidth - 345
@@ -163,19 +163,19 @@ SettingsPage {
         SettingAction {
             tileWidth: 310
             icon: "content_copy"
-            label: "Copy the line"
-            detail: "Uses wl-copy"
+            label: "Sao chép dòng"
+            detail: "Sử dụng wl-copy"
             onActivated: Quickshell.execDetached(["sh", "-c", "printf '%s' \"$1\" | wl-copy", "sh", page.linkLine])
         }
     }
 
     SectionCard {
-        title: "Gaps & borders"
+        title: "Khoảng cách và viền"
 
         SettingSlider {
             width: page.halfWidth
             icon: "padding"
-            label: "Gaps between windows"
+            label: "Khoảng cách giữa các cửa sổ"
             from: 0
             to: 40
             step: 1
@@ -187,7 +187,7 @@ SettingsPage {
         SettingSlider {
             width: page.halfWidth
             icon: "crop_free"
-            label: "Gaps to the screen edge"
+            label: "Khoảng cách đến cạnh màn hình"
             from: 0
             to: 80
             step: 1
@@ -199,13 +199,13 @@ SettingsPage {
         SettingSlider {
             width: page.halfWidth
             icon: "border_style"
-            label: "Border thickness"
+            label: "Độ dày viền"
             from: 0
             to: 10
             step: 1
             suffix: " px"
             specialValue: 0
-            specialText: "None"
+            specialText: "Không có"
             value: HyprlandSettings.num("general.border_size")
             onMoved: v => page.setInt("general.border_size", v)
         }
@@ -213,25 +213,25 @@ SettingsPage {
         SettingSlider {
             width: page.halfWidth
             icon: "rounded_corner"
-            label: "Corner rounding"
+            label: "Độ bo góc"
             from: 0
             to: 40
             step: 1
             suffix: " px"
             specialValue: 0
-            specialText: "Square"
+            specialText: "Vuông"
             value: HyprlandSettings.num("decoration.rounding")
             onMoved: v => page.setInt("decoration.rounding", v)
         }
     }
 
     SectionCard {
-        title: "Windows"
+        title: "Cửa sổ"
 
         SettingSlider {
             width: page.halfWidth
             icon: "opacity"
-            label: "Focused window opacity"
+            label: "Độ mờ cửa sổ đang chọn"
             from: 0.5
             to: 1
             step: 0.01
@@ -243,7 +243,7 @@ SettingsPage {
         SettingSlider {
             width: page.halfWidth
             icon: "opacity"
-            label: "Other windows opacity"
+            label: "Độ mờ các cửa sổ khác"
             from: 0.5
             to: 1
             step: 0.01
@@ -254,14 +254,14 @@ SettingsPage {
 
         SettingToggle {
             icon: "blur_on"
-            label: "Blur"
+            label: "Làm mờ"
             checked: HyprlandSettings.bool("decoration.blur.enabled")
             onToggled: page.flip("decoration.blur.enabled")
         }
 
         SettingStepper {
             icon: "blur_circular"
-            label: "Blur size"
+            label: "Kích thước làm mờ"
             from: 1
             to: 20
             step: 1
@@ -271,7 +271,7 @@ SettingsPage {
 
         SettingStepper {
             icon: "layers"
-            label: "Blur passes"
+            label: "Số lượt làm mờ"
             from: 1
             to: 8
             step: 1
@@ -281,21 +281,21 @@ SettingsPage {
 
         SettingToggle {
             icon: "shadow"
-            label: "Shadows"
+            label: "Bóng"
             checked: HyprlandSettings.bool("decoration.shadow.enabled")
             onToggled: page.flip("decoration.shadow.enabled")
         }
 
         SettingToggle {
             icon: "brightness_medium"
-            label: "Dim other windows"
+            label: "Làm tối các cửa sổ khác"
             checked: HyprlandSettings.bool("decoration.dim_inactive")
             onToggled: page.flip("decoration.dim_inactive")
         }
 
         SettingToggle {
             icon: "open_in_full"
-            label: "Resize on border"
+            label: "Đổi kích thước bằng viền"
             detail: HyprlandSettings.bool("general.resize_on_border") ? "Drag a window's edge" : "OFF"
             checked: HyprlandSettings.bool("general.resize_on_border")
             onToggled: page.flip("general.resize_on_border")
@@ -303,7 +303,7 @@ SettingsPage {
 
         SettingToggle {
             icon: "layers_clear"
-            label: "Window swallowing"
+            label: "Ẩn terminal khi mở ứng dụng"
             detail: HyprlandSettings.bool("misc.enable_swallow") ? "Terminals swallow apps" : "OFF"
             checked: HyprlandSettings.bool("misc.enable_swallow")
             onToggled: page.flip("misc.enable_swallow")
@@ -311,47 +311,47 @@ SettingsPage {
     }
 
     SectionCard {
-        title: "Animations"
+        title: "Hiệu ứng chuyển động"
 
         SettingToggle {
             icon: "animation"
-            label: "Animations"
+            label: "Hiệu ứng chuyển động"
             checked: HyprlandSettings.bool("animations.enabled")
             onToggled: page.flip("animations.enabled")
         }
 
         SettingToggle {
             icon: "aspect_ratio"
-            label: "Animate resizing"
+            label: "Hiệu ứng khi đổi kích thước"
             checked: HyprlandSettings.bool("misc.animate_manual_resizes")
             onToggled: page.flip("misc.animate_manual_resizes")
         }
 
         SettingToggle {
             icon: "hide_image"
-            label: "Hide the logo"
+            label: "Ẩn logo"
             checked: HyprlandSettings.bool("misc.disable_hyprland_logo")
             onToggled: page.flip("misc.disable_hyprland_logo")
         }
     }
 
     SectionCard {
-        title: "Workspaces & layout"
+        title: "Không gian làm việc và bố cục"
 
         SettingChoice {
-            label: "Workspace switch"
+            label: "Chuyển không gian làm việc"
             current: HyprlandSettings.str("animation.workspaces", "slide")
             options: [
-                { id: "slide", label: "Sideways", icon: "swap_horiz" },
-                { id: "slidevert", label: "Vertical (niri)", icon: "swap_vert" },
-                { id: "slidefadevert", label: "Vertical + fade", icon: "vertical_align_center" },
-                { id: "fade", label: "Fade", icon: "blur_on" }
+                { id: "slide", label: "Ngang", icon: "swap_horiz" },
+                { id: "slidevert", label: "Dọc (niri)", icon: "swap_vert" },
+                { id: "slidefadevert", label: "Dọc + mờ dần", icon: "vertical_align_center" },
+                { id: "fade", label: "Mờ dần", icon: "blur_on" }
             ]
             onPicked: id => HyprlandSettings.set("animation.workspaces", "anim", id)
         }
 
         SettingChoice {
-            label: "Tiling layout"
+            label: "Bố cục cửa sổ xếp"
             current: HyprlandSettings.str("general.layout", "dwindle")
             options: [
                 { id: "dwindle", label: "Dwindle", icon: "splitscreen" },
@@ -363,7 +363,7 @@ SettingsPage {
 
         SettingToggle {
             icon: "swap_horiz"
-            label: "Back and forth"
+            label: "Qua lại"
             detail: HyprlandSettings.bool("binds.workspace_back_and_forth") ? "Same key returns" : "OFF"
             checked: HyprlandSettings.bool("binds.workspace_back_and_forth")
             onToggled: page.flip("binds.workspace_back_and_forth")
@@ -371,14 +371,14 @@ SettingsPage {
 
         SettingToggle {
             icon: "cached"
-            label: "Cycle workspaces"
+            label: "Xoay vòng không gian làm việc"
             checked: HyprlandSettings.bool("binds.allow_workspace_cycles")
             onToggled: page.flip("binds.allow_workspace_cycles")
         }
 
         SettingToggle {
             icon: "close_fullscreen"
-            label: "Scratchpad"
+            label: "Không gian tạm"
             detail: HyprlandSettings.bool("misc.close_special_on_empty") ? "Closes when empty" : "OFF"
             checked: HyprlandSettings.bool("misc.close_special_on_empty")
             onToggled: page.flip("misc.close_special_on_empty")
@@ -386,14 +386,14 @@ SettingsPage {
 
         SettingToggle {
             icon: "call_split"
-            label: "Keep split direction"
+            label: "Giữ hướng chia"
             checked: HyprlandSettings.bool("dwindle.preserve_split")
             onToggled: page.flip("dwindle.preserve_split")
         }
 
         SettingToggle {
             icon: "center_focus_strong"
-            label: "Focus on activate"
+            label: "Chuyển focus khi kích hoạt"
             detail: HyprlandSettings.bool("misc.focus_on_activate") ? "Jump to the app" : "OFF"
             checked: HyprlandSettings.bool("misc.focus_on_activate")
             onToggled: page.flip("misc.focus_on_activate")
@@ -405,12 +405,12 @@ SettingsPage {
     SectionCard {
         visible: HyprlandSettings.str("general.layout", "dwindle") === "scrolling"
         height: visible ? implicitHeight : 0
-        title: "Scrolling layout (niri-style)"
+        title: "Bố cục cuộn (kiểu niri)"
 
         SettingSlider {
             width: page.halfWidth
             icon: "view_column"
-            label: "New column width"
+            label: "Chiều rộng cột mới"
             from: 0.2
             to: 1
             step: 0.05
@@ -420,30 +420,30 @@ SettingsPage {
         }
 
         SettingChoice {
-            label: "Focused column"
+            label: "Cột đang chọn"
             current: String(HyprlandSettings.num("scrolling.focus_fit_method"))
             options: [
-                { id: "0", label: "Centre it", icon: "align_horizontal_center" },
-                { id: "1", label: "Just fit it", icon: "fit_screen" }
+                { id: "0", label: "Căn giữa", icon: "align_horizontal_center" },
+                { id: "1", label: "Vừa màn hình", icon: "fit_screen" }
             ]
             onPicked: id => page.setInt("scrolling.focus_fit_method", Number(id))
         }
 
         SettingChoice {
-            label: "Strip scrolls"
+            label: "Hướng cuộn dải"
             current: HyprlandSettings.str("scrolling.direction", "right")
             options: [
-                { id: "right", label: "Rightwards", icon: "east" },
-                { id: "left", label: "Leftwards", icon: "west" },
-                { id: "down", label: "Downwards", icon: "south" },
-                { id: "up", label: "Upwards", icon: "north" }
+                { id: "right", label: "Sang phải", icon: "east" },
+                { id: "left", label: "Sang trái", icon: "west" },
+                { id: "down", label: "Xuống dưới", icon: "south" },
+                { id: "up", label: "Lên trên", icon: "north" }
             ]
             onPicked: id => HyprlandSettings.set("scrolling.direction", "str", id)
         }
 
         SettingToggle {
             icon: "center_focus_weak"
-            label: "Follow focus"
+            label: "Theo cửa sổ đang chọn"
             detail: HyprlandSettings.bool("scrolling.follow_focus") ? "Strip scrolls to it" : "OFF"
             checked: HyprlandSettings.bool("scrolling.follow_focus")
             onToggled: page.flip("scrolling.follow_focus")
@@ -451,7 +451,7 @@ SettingsPage {
 
         SettingToggle {
             icon: "fullscreen"
-            label: "Fullscreen when alone"
+            label: "Toàn màn hình khi chỉ có một cột"
             detail: HyprlandSettings.bool("scrolling.fullscreen_on_one_column") ? "One column fills the screen" : "OFF"
             checked: HyprlandSettings.bool("scrolling.fullscreen_on_one_column")
             onToggled: page.flip("scrolling.fullscreen_on_one_column")
@@ -462,7 +462,7 @@ SettingsPage {
     // ScrollOverview Hyprland plugin (niri-style, drawn by the compositor).
     SectionCard {
         id: overviewCard
-        title: "Overview"
+        title: "Tổng quan"
         icon: "view_column"
 
         readonly property bool scroll: SettingsService.get("overview.style") === "scroll"
@@ -475,11 +475,11 @@ SettingsPage {
         }
 
         SettingChoice {
-            label: "Overview style"
-            sublabel: "What your overview key opens"
+            label: "Kiểu tổng quan"
+            sublabel: "Nội dung phím tổng quan mở"
             current: SettingsService.get("overview.style")
             options: [
-                { id: "board", label: "Film strip", icon: "dashboard" },
+                { id: "board", label: "Dải phim", icon: "dashboard" },
                 { id: "scroll", label: "Scroll (niri)", icon: "view_column" }
             ]
             onPicked: id => SettingsService.set("overview.style", id)
@@ -488,13 +488,13 @@ SettingsPage {
         // The film strip only (the Scroll overview draws its own strip).
         SettingChoice {
             visible: !overviewCard.scroll
-            label: "Board position"
-            sublabel: "Which side of the screen the film strip sits on"
+            label: "Vị trí bảng"
+            sublabel: "Cạnh màn hình đặt dải phim"
             current: SettingsService.get("overview.position")
             options: [
-                { id: "left", label: "Left", icon: "align_horizontal_left" },
-                { id: "center", label: "Center", icon: "align_horizontal_center" },
-                { id: "right", label: "Right", icon: "align_horizontal_right" }
+                { id: "left", label: "Trái", icon: "align_horizontal_left" },
+                { id: "center", label: "Giữa", icon: "align_horizontal_center" },
+                { id: "right", label: "Phải", icon: "align_horizontal_right" }
             ]
             onPicked: id => SettingsService.set("overview.position", id)
         }
@@ -503,7 +503,7 @@ SettingsPage {
             visible: !overviewCard.scroll
             width: page.halfWidth
             icon: "grid_view"
-            label: "Workspaces shown"
+            label: "Số không gian làm việc hiển thị"
             from: 1
             to: 10
             step: 1
@@ -566,7 +566,7 @@ SettingsPage {
             tileWidth: 310
             icon: "content_copy"
             label: "Copy the commands"
-            detail: "Uses wl-copy"
+            detail: "Sử dụng wl-copy"
             onActivated: Quickshell.execDetached(["sh", "-c", "printf '%s' \"$1\" | wl-copy", "sh", overviewCard.installLine])
         }
 
@@ -588,7 +588,7 @@ SettingsPage {
             current: ScrollOverviewService.optionValue("layout")
             options: [
                 { id: "vertical", label: "Vertically", icon: "swap_vert" },
-                { id: "horizontal", label: "Sideways", icon: "swap_horiz" }
+                { id: "horizontal", label: "Ngang", icon: "swap_horiz" }
             ]
             onPicked: id => ScrollOverviewService.setOption("layout", id)
         }
@@ -743,8 +743,8 @@ SettingsPage {
                     sublabel: "Jump next to " + DisplayService.mainName
                     current: scr.d ? scr.d.place : ""
                     options: [
-                        { id: "right", label: "Right", icon: "east" },
-                        { id: "left", label: "Left", icon: "west" },
+                        { id: "right", label: "Phải", icon: "east" },
+                        { id: "left", label: "Trái", icon: "west" },
                         { id: "above", label: "Above", icon: "north" },
                         { id: "below", label: "Below", icon: "south" }
                     ]

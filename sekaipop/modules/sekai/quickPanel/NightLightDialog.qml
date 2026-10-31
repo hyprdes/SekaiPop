@@ -103,7 +103,7 @@ Item {
         Text {
             x: 28
             y: 26
-            text: "Night Light"
+            text: "Ánh sáng đêm"
             color: mt.pInk
             font.family: mt.fontFamily
             font.pixelSize: 26
@@ -148,7 +148,7 @@ Item {
         Text {
             x: 28
             y: 88
-            text: "Intensity"
+            text: "Cường độ"
             color: mt.pInk
             font.family: mt.fontFamily
             font.pixelSize: 17
@@ -236,7 +236,7 @@ Item {
         Text {
             x: 28
             y: 166
-            text: "Cool"
+            text: "Lạnh"
             color: mt.pInkSub
             font.family: mt.fontFamily
             font.pixelSize: 12
@@ -245,7 +245,7 @@ Item {
         Text {
             x: card.width - 28 - width
             y: 166
-            text: "Warm"
+            text: "Ấm"
             color: mt.pInkSub
             font.family: mt.fontFamily
             font.pixelSize: 12
@@ -263,7 +263,7 @@ Item {
         Text {
             x: 28
             y: 224
-            text: "Automatic"
+            text: "Tự động"
             color: mt.pInk
             font.family: mt.fontFamily
             font.pixelSize: 17
@@ -274,7 +274,7 @@ Item {
         Text {
             x: 28
             y: 250
-            text: "Turn on by itself between two times"
+            text: "Tự bật trong khoảng thời gian đã chọn"
             color: mt.pInkSub
             font.family: mt.fontFamily
             font.pixelSize: 13
@@ -322,8 +322,8 @@ Item {
         // From / Until: an hour stepper each.
         Repeater {
             model: [
-                { label: "From", isFrom: true },
-                { label: "Until", isFrom: false }
+                { label: "Từ", isFrom: true },
+                { label: "Đến", isFrom: false }
             ]
 
             delegate: Item {
@@ -438,7 +438,7 @@ Item {
             y: 422
             width: card.width - 56
             wrapMode: Text.Wrap
-            text: "A click on the tile overrides Automatic until the next start or end time."
+            text: "Nhấn vào ô sẽ tạm ghi đè chế độ tự động đến thời điểm bắt đầu hoặc kết thúc tiếp theo."
             color: mt.pInkSub
             font.family: mt.fontFamily
             font.pixelSize: 12

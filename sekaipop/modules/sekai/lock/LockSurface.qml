@@ -439,7 +439,7 @@ Item {
                             }
                             Text {
                                 anchors.right: parent.right
-                                text: "Screen locked"
+                                text: "Màn hình đã khóa"
                                 color: Theme.colSubText
                                 font.family: Theme.fontFamily
                                 font.pixelSize: root.px(19)
@@ -728,7 +728,7 @@ Item {
 
                 Text {
                     anchors.verticalCenter: parent.verticalCenter
-                    text: "Locked since " + Qt.formatDateTime(LockState.lockedAt, "h:mm AP")
+                    text: "Đã khóa từ lúc " + Qt.formatDateTime(LockState.lockedAt, "h:mm AP")
                     color: "white"
                     font.family: Theme.fontFamily
                     font.pixelSize: root.px(24)
@@ -946,7 +946,7 @@ Item {
                         anchors.horizontalCenter: parent.horizontalCenter
                         anchors.horizontalCenterOffset: root.px(30)
                         y: root.px(12)
-                        text: "Unlock"
+                        text: "Mở khóa"
                         color: LockPalette.cBorder
                         font.family: Theme.fontFamily
                         font.pixelSize: root.px(34)
@@ -1023,7 +1023,7 @@ Item {
                     Text {
                         id: hint
                         anchors.centerIn: parent
-                        text: "Enter"
+                        text: "Xác nhận"
                         color: "white"
                         font.family: Theme.fontFamily
                         font.pixelSize: root.px(18)

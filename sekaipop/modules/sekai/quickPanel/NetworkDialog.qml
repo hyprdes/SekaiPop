@@ -144,7 +144,7 @@ Item {
             Text {
                 id: scanLabel
                 anchors.centerIn: parent
-                text: root.manualScanning ? "Scanning…" : "Scan"
+                text: root.manualScanning ? "Đang quét…" : "Quét"
                 color: mt.pInk
                 font.family: mt.fontFamily
                 font.pixelSize: 14
@@ -177,7 +177,7 @@ Item {
             Text {
                 id: advancedLabel
                 anchors.centerIn: parent
-                text: "Advanced"
+                text: "Nâng cao"
                 color: mt.pInk
                 font.family: mt.fontFamily
                 font.pixelSize: 14
@@ -291,10 +291,10 @@ Item {
                 Text {
                     x: 46
                     y: 34
-                    text: row.busy ? "Connecting…"
-                        : row.modelData.connected ? "Connected — tap to disconnect"
-                        : row.modelData.secured ? "Secured"
-                        : "Open"
+                    text: row.busy ? "Đang kết nối…"
+                        : row.modelData.connected ? "Đã kết nối — nhấn để ngắt"
+                        : row.modelData.secured ? "Có bảo mật"
+                        : "Không bảo mật"
                     color: mt.pInkSub
                     font.family: mt.fontFamily
                     font.pixelSize: 13
@@ -363,7 +363,7 @@ Item {
                             Text {
                                 visible: passInput.text === "" && !passInput.activeFocus
                                 anchors.verticalCenter: parent.verticalCenter
-                                text: "Password"
+                                text: "Mật khẩu"
                                 color: mt.pInkSub
                                 font.family: mt.fontFamily
                                 font.pixelSize: 15
@@ -389,7 +389,7 @@ Item {
 
                         Text {
                             anchors.centerIn: parent
-                            text: "Connect"
+                            text: "Kết nối"
                             color: connectArea.containsMouse ? mt.colBorder : mt.pInk
                             font.family: mt.fontFamily
                             font.pixelSize: 13
@@ -414,7 +414,7 @@ Item {
         Text {
             visible: root.networks.length === 0 && !root.scanning
             anchors.centerIn: list
-            text: "No networks found"
+            text: "Không tìm thấy mạng"
             color: mt.pInkSub
             font.family: mt.fontFamily
             font.pixelSize: 16

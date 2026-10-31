@@ -286,7 +286,7 @@ Scope {
             if (result === PamResult.Error)
                 return
 
-            root.failureText = "Fingerprint not recognized"
+            root.failureText = "Không nhận diện được vân tay"
             root.failureCount++
             if (result === PamResult.MaxTries)
                 root.fprintExhausted = true
@@ -314,11 +314,11 @@ Scope {
             root.currentText = ""
             root.failureCount++
             if (result === PamResult.Error)
-                root.failureText = "Couldn't check the password (PAM error)"
+                root.failureText = "Không thể kiểm tra mật khẩu (lỗi PAM)"
             else if (result === PamResult.MaxTries)
-                root.failureText = "Too many tries — wait a moment"
+                root.failureText = "Thử quá nhiều lần — vui lòng đợi"
             else
-                root.failureText = "Wrong password"
+                root.failureText = "Sai mật khẩu"
 
             // Re-enable fingerprint scanning if password check failed.
             startFp()

@@ -28,7 +28,7 @@ Item {
 
     property bool open: false
     property string kind: "speaker"        // "speaker" or "microphone"
-    property string title: "Speaker"
+    property string title: "Loa"
     property string deviceCaption: "Output" // "Output" or "Input"
     property var devices: []               // [{id, name, active}]
     property var streams: []               // [{id, name, volume, muted, corked}]
@@ -151,7 +151,7 @@ Item {
             Text {
                 id: scanLabel
                 anchors.centerIn: parent
-                text: root.manualScanning ? "Refreshing…" : "Refresh"
+                text: root.manualScanning ? "Đang làm mới…" : "Làm mới"
                 color: mt.pInk
                 font.family: mt.fontFamily
                 font.pixelSize: 14
@@ -219,7 +219,7 @@ Item {
                     y: 26
                     width: parent.width - 18 - 40
                     elide: Text.ElideRight
-                    text: root.activeDevice ? root.activeDevice.name : "No device"
+                    text: root.activeDevice ? root.activeDevice.name : "Không có thiết bị"
                     color: mt.pInk
                     font.family: mt.fontFamily
                     font.pixelSize: 17
@@ -289,7 +289,7 @@ Item {
                         anchors.right: parent.right
                         anchors.rightMargin: 18
                         anchors.verticalCenter: parent.verticalCenter
-                        text: "Switching…"
+                        text: "Đang chuyển…"
                         color: mt.pInkSub
                         font.family: mt.fontFamily
                         font.pixelSize: 13
@@ -316,7 +316,7 @@ Item {
             id: mixerLabel
             x: 28
             y: deviceSection.y + deviceSection.height + 14
-            text: "App volumes"
+            text: "Âm lượng ứng dụng"
             color: mt.pInkSub
             font.family: mt.fontFamily
             font.pixelSize: 13
@@ -470,7 +470,7 @@ Item {
         Text {
             visible: root.streams.length === 0 && !root.scanning
             anchors.centerIn: mixerList
-            text: root.kind === "microphone" ? "Nothing's recording right now" : "Nothing's playing right now"
+            text: root.kind === "microphone" ? "Hiện không có ứng dụng nào đang ghi âm" : "Hiện không có ứng dụng nào đang phát âm thanh"
             color: mt.pInkSub
             font.family: mt.fontFamily
             font.pixelSize: 16

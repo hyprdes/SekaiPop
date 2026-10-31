@@ -20,14 +20,14 @@ SettingsPage {
         { key: "bar.media", icon: "music_note", label: "Media" },
         { key: "bar.weather", icon: "partly_cloudy_day", label: "Weather" },
         { key: "bar.date", icon: "calendar_month", label: "Date" },
-        { key: "bar.clock", icon: "schedule", label: "Clock" },
+        { key: "bar.clock", icon: "schedule", label: "Đồng hồ" },
         { key: "bar.resources", icon: "memory", label: "CPU & RAM" },
         { key: "bar.status", icon: "wifi", label: "Wi-Fi, Bluetooth & sound icons" },
         { key: "bar.battery", icon: "battery_android_full", label: "Battery" },
         { key: "bar.keyboardLayout", icon: "keyboard_alt", label: "Keyboard layout" },
         { key: "bar.notifications", icon: "notifications", label: "Notification bell" },
         { key: "bar.tray", icon: "apps", label: "Tray" },
-        { key: "bar.utilButtons", icon: "construction", label: "Utility keys" },
+        { key: "bar.utilButtons", icon: "construction", label: "Phím tiện ích" },
         { key: "bar.privacy", icon: "shield_with_heart", label: "Privacy (mic / screen share)" },
         { key: "bar.updates", icon: "system_update_alt", label: "Package updates" },
         { key: "bar.discord", icon: "headset_mic", label: "Discord call" }
@@ -41,49 +41,49 @@ SettingsPage {
         { key: "util.darkMode", icon: "dark_mode", label: "Dark / light" },
         { key: "util.profile", icon: "speed", label: "Performance" },
         { key: "util.record", icon: "screen_record", label: "Record" },
-        { key: "util.wallpapers", icon: "wallpaper", label: "Wallpapers" }
+        { key: "util.wallpapers", icon: "wallpaper", label: "Hình nền" }
     ]
 
     SectionCard {
-        title: "Bar"
+        title: "Thanh"
 
         SettingToggle {
             icon: "visibility"
-            label: "Show bar"
+            label: "Hiện thanh"
             detail: SettingsService.flag("bar.visible") ? "ON" : "Hidden · gear in Quick Panel"
             checked: SettingsService.flag("bar.visible")
             onToggled: SettingsService.toggle("bar.visible")
         }
 
         SettingChoice {
-            label: "Style"
-            sublabel: "How the bar is drawn"
+            label: "Kiểu"
+            sublabel: "Cách hiển thị thanh"
             current: BarStyleService.style
             options: [
-                { id: "float", label: "Float", edge: "top", variant: "float" },
-                { id: "straight", label: "Straight", edge: "top", variant: "straight" },
-                { id: "transparent", label: "Transparent", edge: "top", variant: "transparent" },
-                { id: "capsule", label: "Capsule", edge: "top", variant: "capsule" }
+                { id: "float", label: "Nổi", edge: "top", variant: "float" },
+                { id: "straight", label: "Thẳng", edge: "top", variant: "straight" },
+                { id: "transparent", label: "Trong suốt", edge: "top", variant: "transparent" },
+                { id: "capsule", label: "Viên thuốc", edge: "top", variant: "capsule" }
             ]
             onPicked: id => BarStyleService.setStyle(id)
         }
 
         SettingChoice {
-            label: "Position"
-            sublabel: "Which edge it sits on"
+            label: "Vị trí"
+            sublabel: "Chọn cạnh màn hình"
             current: BarPositionService.position
             options: [
-                { id: "top", label: "Top", edge: "top" },
-                { id: "right", label: "Right", edge: "right" },
-                { id: "bottom", label: "Bottom", edge: "bottom" },
-                { id: "left", label: "Left", edge: "left" }
+                { id: "top", label: "Trên", edge: "top" },
+                { id: "right", label: "Phải", edge: "right" },
+                { id: "bottom", label: "Dưới", edge: "bottom" },
+                { id: "left", label: "Trái", edge: "left" }
             ]
             onPicked: id => BarPositionService.setPosition(id)
         }
 
         SettingToggle {
             icon: "vertical_align_top"
-            label: "Auto-hide"
+            label: "Tự động ẩn"
             detail: SettingsService.get("bar.hideMode") === "auto"
                 ? "Away until the pointer touches the edge · windows use the whole screen"
                 : "Always shown"
@@ -93,7 +93,7 @@ SettingsPage {
 
         SettingToggle {
             icon: "monitor"
-            label: "Separate bar per monitor"
+            label: "Thanh riêng cho từng màn hình"
             detail: BarLayoutService.perMonitor
                 ? "Each monitor has its own layout · edit it in Edit Desktop"
                 : "Same bar layout on every monitor"
@@ -110,7 +110,7 @@ SettingsPage {
     }
 
     SectionCard {
-        title: "Modules"
+        title: "Mô-đun"
 
         Repeater {
             model: page.modules
@@ -159,7 +159,7 @@ SettingsPage {
                     anchors.topMargin: -10
                     kind: "cap"
                     icon: "settings"
-                    text: "Settings"
+                    text: "Cài đặt"
                     scale: plugArea.pressed ? 0.94 : 1
 
                     MouseArea {
@@ -176,7 +176,7 @@ SettingsPage {
             visible: SettingsService.flag("bar.workspaces")
             width: page.halfWidth
             icon: "grid_view"
-            label: "Workspaces on the bar"
+            label: "Không gian làm việc trên thanh"
             from: 1
             to: 10
             step: 1
@@ -186,11 +186,11 @@ SettingsPage {
     }
 
     SectionCard {
-        title: "Privacy & updates"
+        title: "Quyền riêng tư và cập nhật"
 
         SettingToggle {
             icon: "exposure_zero"
-            label: "Show 0 updates"
+            label: "Hiển thị khi không có cập nhật"
             detail: PackageUpdatesService.breakdown
             checked: SettingsService.flag("updates.showZero")
             onToggled: SettingsService.toggle("updates.showZero")
@@ -198,7 +198,7 @@ SettingsPage {
 
         SettingToggle {
             icon: "deployed_code"
-            label: "Count AUR updates"
+            label: "Đếm cập nhật AUR"
             detail: "paru or yay"
             checked: SettingsService.flag("updates.aur")
             onToggled: {
@@ -209,7 +209,7 @@ SettingsPage {
 
         SettingAction {
             icon: "refresh"
-            label: "Check for updates"
+            label: "Kiểm tra cập nhật"
             detail: PackageUpdatesService.breakdown
             busy: PackageUpdatesService.status === "checking"
             onActivated: PackageUpdatesService.refresh()
@@ -218,13 +218,13 @@ SettingsPage {
         SettingSlider {
             width: page.halfWidth
             icon: "notification_important"
-            label: "Nudge from"
+            label: "Nhắc khi đạt"
             from: 0
             to: 100
             step: 5
             suffix: " updates"
             specialValue: 0
-            specialText: "Never"
+            specialText: "Không bao giờ"
             value: SettingsService.get("updates.nudgeAt")
             onMoved: v => SettingsService.set("updates.nudgeAt", v)
         }
@@ -232,7 +232,7 @@ SettingsPage {
         SettingSlider {
             width: page.halfWidth
             icon: "update"
-            label: "Look every"
+            label: "Kiểm tra mỗi"
             from: 5
             to: 240
             step: 5
@@ -242,8 +242,8 @@ SettingsPage {
         }
 
         SettingChoice {
-            label: "Badge click opens"
-            sublabel: "The terminal the update runs in"
+            label: "Nhấp huy hiệu mở"
+            sublabel: "Terminal dùng để chạy cập nhật"
             current: SettingsService.get("updates.terminal")
             options: [
                 { id: "kitty", label: "kitty", icon: "terminal" },
@@ -255,49 +255,49 @@ SettingsPage {
     }
 
     SectionCard {
-        title: "Media, tray & scrolling"
+        title: "Đa phương tiện, khay và cuộn"
 
         SettingChoice {
-            label: "Media pill click"
-            sublabel: "Left click on the pill"
+            label: "Nhấp mục đa phương tiện"
+            sublabel: "Nhấp chuột trái vào mục"
             current: SettingsService.get("media.leftClick")
             options: [
-                { id: "panel", label: "Open panel", icon: "queue_music" },
-                { id: "playpause", label: "Play / pause", icon: "play_pause" }
+                { id: "panel", label: "Mở bảng", icon: "queue_music" },
+                { id: "playpause", label: "Phát / tạm dừng", icon: "play_pause" }
             ]
             onPicked: id => SettingsService.set("media.leftClick", id)
         }
 
         SettingChoice {
-            label: "Discord pill click"
-            sublabel: "Left click on the pill"
+            label: "Nhấp mục Discord"
+            sublabel: "Nhấp chuột trái vào mục"
             current: SettingsService.get("discord.leftClick")
             options: [
-                { id: "panel", label: "Open panel", icon: "headset_mic" },
-                { id: "mute", label: "Mute", icon: "mic_off" }
+                { id: "panel", label: "Mở bảng", icon: "headset_mic" },
+                { id: "mute", label: "Tắt tiếng", icon: "mic_off" }
             ]
             onPicked: id => SettingsService.set("discord.leftClick", id)
         }
 
         SettingToggle {
             icon: "swap_vert"
-            label: "Scroll on tray icons"
-            detail: "Sent to the app"
+            label: "Cuộn trên biểu tượng khay"
+            detail: "Gửi tới ứng dụng"
             checked: SettingsService.flag("tray.scroll")
             onToggled: SettingsService.toggle("tray.scroll")
         }
 
         SettingToggle {
             icon: "unfold_more"
-            label: "Scroll hints"
-            detail: "A marker where the wheel works"
+            label: "Gợi ý cuộn"
+            detail: "Đánh dấu vị trí có thể dùng con lăn"
             checked: SettingsService.flag("bar.scrollHints")
             onToggled: SettingsService.toggle("bar.scrollHints")
         }
     }
 
     SectionCard {
-        title: "Utility keys"
+        title: "Phím tiện ích"
 
         Repeater {
             model: page.utilKeys
@@ -336,11 +336,11 @@ SettingsPage {
     }
 
     SectionCard {
-        title: "Size"
+        title: "Kích thước"
 
         SettingStepper {
             icon: "aspect_ratio"
-            label: "Shell size"
+            label: "Kích thước shell"
             from: 0.5
             to: 3
             step: 0.05
@@ -352,8 +352,8 @@ SettingsPage {
 
         SettingAction {
             icon: "restart_alt"
-            label: "Reset size"
-            detail: "Back to the default"
+            label: "Đặt lại kích thước"
+            detail: "Trở về mặc định"
             onActivated: { if (page.host) ShellScale.resetScale(page.host.screenName) }
         }
     }

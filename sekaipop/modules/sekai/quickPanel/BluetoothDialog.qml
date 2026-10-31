@@ -116,7 +116,7 @@ Item {
             Text {
                 id: scanLabel
                 anchors.centerIn: parent
-                text: root.manualScanning ? "Refreshing…" : "Refresh"
+                text: root.manualScanning ? "Đang làm mới…" : "Làm mới"
                 color: mt.pInk
                 font.family: mt.fontFamily
                 font.pixelSize: 14
@@ -149,7 +149,7 @@ Item {
             Text {
                 id: advancedLabel
                 anchors.centerIn: parent
-                text: "Advanced"
+                text: "Nâng cao"
                 color: mt.pInk
                 font.family: mt.fontFamily
                 font.pixelSize: 14
@@ -183,7 +183,7 @@ Item {
             x: 28
             y: errorLabel.visible ? 90 : 66
             width: card.width - 56
-            text: "Devices paired elsewhere show up here. New pairing isn't done from this panel."
+            text: "Thiết bị đã ghép đôi ở nơi khác sẽ xuất hiện tại đây. Không thể ghép đôi thiết bị mới từ bảng này."
             wrapMode: Text.Wrap
             color: mt.pInkSub
             font.family: mt.fontFamily
@@ -283,9 +283,9 @@ Item {
                 Text {
                     x: 50
                     y: 34
-                    text: row.busy ? (row.modelData.connected ? "Disconnecting…" : "Connecting…")
-                        : row.modelData.connected ? "Connected — tap to disconnect"
-                        : "Paired — tap to connect"
+                    text: row.busy ? (row.modelData.connected ? "Đang ngắt kết nối…" : "Đang kết nối…")
+                        : row.modelData.connected ? "Đã kết nối — nhấn để ngắt"
+                        : "Đã ghép đôi — nhấn để kết nối"
                     color: mt.pInkSub
                     font.family: mt.fontFamily
                     font.pixelSize: 13
@@ -314,7 +314,7 @@ Item {
         Text {
             visible: root.devices.length === 0 && !root.scanning
             anchors.centerIn: list
-            text: "No paired devices"
+            text: "Không có thiết bị đã ghép đôi"
             color: mt.pInkSub
             font.family: mt.fontFamily
             font.pixelSize: 16
