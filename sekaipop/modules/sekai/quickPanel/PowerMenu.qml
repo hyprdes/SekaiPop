@@ -119,14 +119,14 @@ Item {
     // What each row does, in the same order: the label shown beside a hovered or
     // keyboard-selected pill (an icon alone doesn't tell hibernate from sleep).
     readonly property var labels: [
-        "Shut down",
-        "Reboot",
-        "Log out",
-        "Lock",
-        "Sleep",
-        "Hibernate",
-        "Reboot to firmware",
-        "System monitor"
+        "Tắt máy",
+        "Khởi động lại",
+        "Đăng xuất",
+        "Khóa",
+        "Tạm ngưng",
+        "Ngủ đông",
+        "Khởi động lại vào firmware",
+        "Giám sát hệ thống"
     ]
 
     // One pill's footprint and the gap between row centers, both design

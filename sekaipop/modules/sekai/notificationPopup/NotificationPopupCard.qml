@@ -434,7 +434,7 @@ Item {
 
                     Text {
                         anchors.verticalCenter: parent.verticalCenter
-                        text: "now"
+                        text: "vừa xong"
                         color: mt.pInkSub
                         font.family: mt.fontFamily
                         font.pixelSize: 12

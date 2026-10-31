@@ -476,7 +476,7 @@ Item {
 
             Text {
                 anchors.verticalCenter: parent.verticalCenter
-                text: "LOCKED"
+                text: "ĐÃ KHÓA"
                 color: root.ink
                 font.family: Theme.fontFamily
                 font.pixelSize: root.px(22)
@@ -517,7 +517,7 @@ Item {
                 Text {
                     id: nameLabel
                     anchors.centerIn: parent
-                    text: "NAME"
+                    text: "TÊN"
                     color: root.white
                     font.family: Theme.fontFamily
                     font.pixelSize: root.px(14)
@@ -724,7 +724,7 @@ Item {
             Text {
                 id: footerText
                 anchors.centerIn: parent
-                text: "LOCKED SINCE " + Qt.formatDateTime(LockState.lockedAt, "h:mm AP").toUpperCase()
+                text: "ĐÃ KHÓA TỪ LÚC " + Qt.formatDateTime(LockState.lockedAt, "h:mm AP").toUpperCase()
                       + (battery.available ? "  \u00b7  " + battery.percentage + "%" + (battery.isCharging ? " +" : "") : "")
                 color: root.ink
                 font.family: Theme.fontFamily
@@ -1054,7 +1054,7 @@ Item {
                 Text {
                     anchors.horizontalCenter: parent.horizontalCenter
                     y: parent.height - height - root.px(8)
-                    text: enterKey.coffee ? "SLEEP" : "ENTER"
+                    text: enterKey.coffee ? "TẠM NGƯNG" : "XÁC NHẬN"
                     color: root.ink
                     font.family: Theme.fontFamily
                     font.pixelSize: root.px(16)

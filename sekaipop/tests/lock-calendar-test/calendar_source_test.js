@@ -72,7 +72,7 @@ for (const k of ["lock.style", "lock.crop", "lock.powerButtons", "lock.tone"]) {
     const rel = braceBody(calendar, calendar.indexOf("Keys.onReleased:"));
     assert.ok(/ctrlHeld = event\.key !== Qt\.Key_Control/.test(rel), "releasing Ctrl clears it");
     assert.ok(/onActiveFocusChanged:[\s\S]*ctrlHeld = false/.test(calendar), "losing the keyboard clears it");
-    assert.ok(/name: "coffee"/.test(calendar) && /text: enterKey\.coffee \? "SLEEP" : "ENTER"/.test(calendar), "the Enter key becomes the coffee key");
+    assert.ok(/name: "coffee"/.test(calendar) && /text: enterKey\.coffee \? "TẠM NGƯNG" : "XÁC NHẬN"/.test(calendar), "the Enter key becomes the coffee key");
     assert.ok(/enterKey\.coffee \|\| mouse\.button === Qt\.RightButton/.test(calendar), "clicking it while Ctrl is held, or right-clicking, sleeps");
     assert.ok(/restart_alt/.test(calendar) && /power_settings_new/.test(calendar), "restart and shutdown keys exist");
     assert.ok(/powerPress\("reboot"\)/.test(calendar) && /powerPress\("poweroff"\)/.test(calendar));

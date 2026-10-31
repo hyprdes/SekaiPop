@@ -24,7 +24,7 @@ Pill {
     id: root
 
     property string message: ""
-    property string prompt: "Password"
+    property string prompt: "Mật khẩu"
     property bool passwordMode: true
     property bool interactionAvailable: true
     property bool failed: false
@@ -169,7 +169,7 @@ Pill {
 
                 Text {
                     width: parent.width
-                    text: "Authentication Required"
+                    text: "Yêu cầu xác thực"
                     elide: Text.ElideRight
                     color: mt.ink
                     font.family: mt.fontFamily
@@ -267,7 +267,7 @@ Pill {
 
                 Text {
                     anchors.verticalCenter: parent.verticalCenter
-                    text: "Sorry, that didn't work. Try again."
+                    text: "Xác thực không thành công. Vui lòng thử lại."
                     color: mt.colBorder
                     font.family: mt.fontFamily
                     font.pixelSize: 13
@@ -288,12 +288,12 @@ Pill {
                 spacing: 14
 
                 DialogButton {
-                    text: "Cancel"
+                    text: "Hủy"
                     onClicked: root.cancelled()
                 }
 
                 DialogButton {
-                    text: "Unlock"
+                    text: "Mở khóa"
                     primary: true
                     enabled: root.interactionAvailable
                     onClicked: root.trySubmit()

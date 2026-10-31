@@ -633,7 +633,7 @@ Item {
             FaceKey {
                 id: changeKey
                 icon: "image"
-                text: "Change"
+                text: "Thay đổi"
                 onClicked: {
                     face.bannerPickRequested()
                     face.panelCloseRequested()
@@ -642,7 +642,7 @@ Item {
             FaceKey {
                 id: frameKey
                 icon: "crop"
-                text: "Frame"
+                text: "Chỉnh khung"
                 onClicked: {
                     face.panelCloseRequested()
                     face.bannerFrameRequested()
@@ -703,7 +703,7 @@ Item {
                     id: bannerRemoveLabel
                     anchors.verticalCenter: parent.verticalCenter
                     visible: bannerRemove.armed
-                    text: "Remove?"
+                    text: "Xóa?"
                     color: mt.colBorder
                     font.family: mt.fontFamily
                     font.pixelSize: 18 - 3
@@ -1013,7 +1013,7 @@ Item {
                     id: avatarRemoveLabel
                     anchors.verticalCenter: parent.verticalCenter
                     visible: avatarRemove.armed
-                    text: "Remove?"
+                    text: "Xóa?"
                     color: mt.colBorder
                     font.family: mt.fontFamily
                     font.pixelSize: 16 - 3
@@ -1788,7 +1788,7 @@ Item {
     function ago(ms) {
         const s = Math.max(0, Math.floor((nowMs - ms) / 1000))
         if (s < 60)
-            return "now"
+            return "vừa xong"
         if (s < 3600)
             return Math.floor(s / 60) + "m"
         if (s < 86400)
@@ -2221,7 +2221,7 @@ Item {
             Text {
                 id: columnsLabel
                 anchors.verticalCenter: parent.verticalCenter
-                text: "Columns"
+                text: "Cột"
                 color: mt.pInk
                 font.family: mt.fontFamily
                 font.pixelSize: 18
@@ -2374,7 +2374,7 @@ Item {
             y: columnsRow.y + columnsRow.height + 24
             width: 520
             wrapMode: Text.WordWrap
-            text: "Every button is on the panel. Remove one to see it here."
+            text: "Mọi nút đều đã nằm trên bảng. Xóa một nút để thấy nó ở đây."
             color: mt.pInk
             opacity: 0.67
             font.family: mt.fontFamily
@@ -2387,7 +2387,7 @@ Item {
             y: editTray.shownH - 60
             width: 520
             wrapMode: Text.WordWrap
-            text: "The panel is full. Remove a button to make room."
+            text: "Bảng đã đầy. Xóa một nút để tạo chỗ trống."
             color: mt.pInk
             opacity: 0.67
             font.family: mt.fontFamily
@@ -2679,7 +2679,7 @@ Item {
             y: 12
             width: 70
             horizontalAlignment: Text.AlignRight
-            text: "now"
+            text: "vừa xong"
             color: mt.pInkSub
             font.family: mt.fontFamily
             font.pixelSize: 15
