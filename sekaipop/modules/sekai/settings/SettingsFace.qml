@@ -75,12 +75,12 @@ Item {
 
     // ===== pages =====
     readonly property var pages: [
-        { id: "quick", icon: "instant_mix", label: "Quick", title: "Quick", sub: "The things you reach for most" },
-        { id: "general", icon: "tune", label: "General", title: "General", sub: "How the shell behaves" },
-        { id: "bar", icon: "toast", label: "Bar", title: "Bar", sub: "Where it sits and what it carries" },
-        { id: "desktop", icon: "desktop_windows", label: "Desktop", title: "Desktop", sub: "Wallpaper, widgets and effects" },
-        { id: "hyprland", icon: "grid_view", label: "Hyprland", title: "Hyprland", sub: "Windows, workspaces and input" },
-        { id: "about", icon: "info", label: "About", longLabel: "About / Update", title: "About / Update", sub: "Version, updates and credits" }
+        { id: "quick", icon: "instant_mix", label: "Nhanh", title: "Nhanh", sub: "Các mục thường dùng" },
+        { id: "general", icon: "tune", label: "Chung", title: "Chung", sub: "Cách shell hoạt động" },
+        { id: "bar", icon: "toast", label: "Thanh", title: "Thanh", sub: "Vị trí và nội dung của thanh" },
+        { id: "desktop", icon: "desktop_windows", label: "Màn hình nền", title: "Màn hình nền", sub: "Hình nền, tiện ích và hiệu ứng" },
+        { id: "hyprland", icon: "grid_view", label: "Hyprland", title: "Hyprland", sub: "Cửa sổ, không gian làm việc và thiết bị nhập" },
+        { id: "about", icon: "info", label: "Giới thiệu", longLabel: "Giới thiệu / Cập nhật", title: "Giới thiệu / Cập nhật", sub: "Phiên bản, cập nhật và ghi công" }
     ]
 
     property int pageIndex: 0
@@ -293,7 +293,7 @@ Item {
     // ===== header =====
     property int shownPage: -1
 
-    readonly property var hubInfo: ({ icon: "settings", title: "Settings", sub: "Pick what you want to change" })
+    readonly property var hubInfo: ({ icon: "settings", title: "Cài đặt", sub: "Chọn mục bạn muốn thay đổi" })
     readonly property var shownInfo: shownPage < 0 ? hubInfo : pages[shownPage]
 
     SequentialAnimation {
@@ -582,7 +582,7 @@ Item {
         y: 36
         width: 280
         height: 52
-        placeholder: "Search settings"
+        placeholder: "Tìm trong cài đặt"
         stepKeys: true
         onTextChanged: face.searchText = text
         onStepped: direction => face.stepResult(direction)
@@ -716,7 +716,7 @@ Item {
         Text {
             visible: face.results.length === 0
             anchors.centerIn: parent
-            text: "No settings found"
+            text: "Không tìm thấy cài đặt"
             color: mt.pInkSub
             font.family: mt.fontFamily
             font.pixelSize: 20

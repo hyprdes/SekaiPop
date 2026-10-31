@@ -10,11 +10,11 @@ SettingsPage {
     id: page
 
     SectionCard {
-        title: "Time & alerts"
+        title: "Thời gian và thông báo"
 
         SettingToggle {
             icon: "schedule"
-            label: "24-hour time"
+            label: "Định dạng 24 giờ"
             checked: SettingsService.flag("time.use24h")
             onToggled: {
                 const on = !SettingsService.flag("time.use24h")
@@ -33,68 +33,68 @@ SettingsPage {
         }
 
         SettingChoice {
-            label: "Notification alert"
-            sublabel: "Phone: the Quick Panel's phone rises. Popups: a stack of cards in the corner"
+            label: "Kiểu thông báo"
+            sublabel: "Điện thoại: mở bảng điện thoại. Cửa sổ bật lên: xếp các thẻ ở góc màn hình"
             current: SettingsService.get("notify.style")
             options: [
-                { id: "phone", label: "Phone", icon: "smartphone" },
-                { id: "popups", label: "Popups", icon: "notifications_active" }
+                { id: "phone", label: "Điện thoại", icon: "smartphone" },
+                { id: "popups", label: "Cửa sổ bật lên", icon: "notifications_active" }
             ]
             onPicked: id => SettingsService.set("notify.style", id)
         }
 
         SettingToggle {
             icon: "do_not_disturb_on"
-            label: "Quiet while fullscreen"
-            detail: "No popups or buzz while a window is fullscreen. They still wait in the list; urgent ones break through"
+            label: "Im lặng khi toàn màn hình"
+            detail: "Không hiện thông báo hoặc rung khi có cửa sổ toàn màn hình. Thông báo vẫn nằm trong danh sách; thông báo khẩn cấp vẫn được hiển thị"
             checked: SettingsService.flag("notify.quietFullscreen")
             onToggled: SettingsService.toggle("notify.quietFullscreen")
         }
 
         SettingToggle {
             icon: "battery_alert"
-            label: "Low battery warnings"
-            detail: "A notification at 20, 15, 10 and 5 % on battery. The last two are urgent and break through do-not-disturb"
+            label: "Cảnh báo pin yếu"
+            detail: "Thông báo khi pin còn 20, 15, 10 và 5%. Hai mức cuối là khẩn cấp và bỏ qua chế độ không làm phiền"
             checked: SettingsService.flag("battery.alerts")
             onToggled: SettingsService.toggle("battery.alerts")
         }
 
         SettingToggle {
             icon: "vibration"
-            label: "Buzz on arrival"
-            detail: SettingsService.get("notify.style") === "phone" ? "" : "Phone alert only"
+            label: "Rung khi có thông báo"
+            detail: SettingsService.get("notify.style") === "phone" ? "" : "Chỉ áp dụng cho thông báo điện thoại"
             checked: SettingsService.flag("notify.buzz")
             onToggled: SettingsService.toggle("notify.buzz")
         }
 
         SettingAction {
             icon: "clear_all"
-            label: "Clear all"
+            label: "Xóa tất cả"
             detail: page.host && page.host.notificationSource
-                ? (page.host.notificationSource.count === 0 ? "Nothing waiting" : page.host.notificationSource.count + " waiting") : ""
+                ? (page.host.notificationSource.count === 0 ? "Không có thông báo" : page.host.notificationSource.count + " thông báo đang chờ") : ""
             onActivated: if (page.host && page.host.notificationSource) page.host.notificationSource.clearAll()
         }
     }
 
     SectionCard {
-        title: "Weather"
+        title: "Thời tiết"
 
         SettingText {
-            label: "Location"
-            sublabel: "Type your city, like Majayjay or Paris, France. Empty: a guess from your IP"
+            label: "Vị trí"
+            sublabel: "Nhập tên thành phố, ví dụ Hanoi hoặc Paris, France. Để trống để ước tính từ địa chỉ IP"
             value: SettingsService.get("weather.location")
-            placeholder: "automatic (from your IP)"
+            placeholder: "tự động (từ địa chỉ IP)"
             onSubmitted: text => SettingsService.set("weather.location", text)
             onCleared: SettingsService.set("weather.location", "")
         }
 
         SettingChoice {
-            label: "Popup shows"
-            sublabel: "The row under the details"
+            label: "Nội dung cửa sổ bật lên"
+            sublabel: "Hàng bên dưới phần chi tiết"
             current: SettingsService.get("weather.view")
             options: [
-                { id: "days", label: "Next days", icon: "calendar_view_week" },
-                { id: "hourly", label: "Hourly", icon: "schedule" }
+                { id: "days", label: "Những ngày tới", icon: "calendar_view_week" },
+                { id: "hourly", label: "Theo giờ", icon: "schedule" }
             ]
             onPicked: id => SettingsService.set("weather.view", id)
         }
@@ -102,27 +102,27 @@ SettingsPage {
     }
 
     SectionCard {
-        title: "Screen region"
+        title: "Vùng màn hình"
 
         SettingToggle {
             icon: "screenshot_region"
-            label: "Own region picker"
-            detail: "For the Screenshot and Record keys"
+            label: "Dùng công cụ chọn vùng riêng"
+            detail: "Áp dụng cho phím chụp và quay màn hình"
             checked: SettingsService.flag("region.own")
             onToggled: SettingsService.toggle("region.own")
         }
 
         SettingToggle {
             icon: "preview"
-            label: "Preview after a screenshot"
-            detail: "A card to annotate, copy or save"
+            label: "Xem trước sau khi chụp màn hình"
+            detail: "Hiển thị thẻ để chú thích, sao chép hoặc lưu"
             checked: SettingsService.flag("region.preview")
             onToggled: SettingsService.toggle("region.preview")
         }
 
         SettingStepper {
             icon: "timer"
-            label: "Preview stays"
+            label: "Thời gian xem trước"
             from: 2
             to: 20
             step: 1
@@ -132,20 +132,20 @@ SettingsPage {
         }
 
         SettingChoice {
-            label: "Record with sound"
-            sublabel: "Which sound goes in the video"
+            label: "Quay kèm âm thanh"
+            sublabel: "Chọn nguồn âm thanh cho video"
             current: SettingsService.get("region.audio")
             options: [
-                { id: "system", label: "What you hear", icon: "volume_up" },
-                { id: "mic", label: "Microphone", icon: "mic" }
+                { id: "system", label: "Âm thanh hệ thống", icon: "volume_up" },
+                { id: "mic", label: "Micrô", icon: "mic" }
             ]
             onPicked: id => SettingsService.set("region.audio", id)
         }
 
         SettingAction {
             icon: "crop_free"
-            label: "Pick a region"
-            detail: "Copy, save, text, search, record"
+            label: "Chọn vùng"
+            detail: "Sao chép, lưu, nhận dạng chữ, tìm kiếm, quay"
             onActivated: {
                 if (page.host) page.host.closeRequested()
                 RegionService.showLater("copy")
@@ -158,15 +158,15 @@ SettingsPage {
 
         SettingToggle {
             icon: "swipe_up"
-            label: "Hot edge"
-            detail: SettingsService.flag("panel.hotEdge") ? "Bottom centre" : "OFF"
+            label: "Vùng kích hoạt ở cạnh màn hình"
+            detail: SettingsService.flag("panel.hotEdge") ? "Giữa cạnh dưới" : "TẮT"
             checked: SettingsService.flag("panel.hotEdge")
             onToggled: SettingsService.toggle("panel.hotEdge")
         }
 
         SettingStepper {
             icon: "timer"
-            label: "Edge delay"
+            label: "Độ trễ cạnh màn hình"
             from: 40
             to: 800
             step: 20
@@ -178,7 +178,7 @@ SettingsPage {
         SettingSlider {
             width: page.halfWidth
             icon: "vertical_align_top"
-            label: "How much of the phone shows"
+            label: "Phần điện thoại hiển thị"
             from: 40
             to: 100
             step: 2
@@ -189,8 +189,8 @@ SettingsPage {
 
         SettingToggle {
             icon: "keyboard"
-            label: "Type to search apps"
-            detail: SettingsService.flag("panel.typeToSearch") ? "A letter opens Apps" : "OFF"
+            label: "Gõ để tìm ứng dụng"
+            detail: SettingsService.flag("panel.typeToSearch") ? "Gõ một chữ để mở Ứng dụng" : "TẮT"
             checked: SettingsService.flag("panel.typeToSearch")
             onToggled: SettingsService.toggle("panel.typeToSearch")
         }
@@ -199,13 +199,13 @@ SettingsPage {
         // picture" with none picked yet opens the chooser first, and only a picked
         // picture turns it on (PanelImages' picker), so cancelling changes nothing.
         SettingChoice {
-            label: "Phone wallpaper"
-            sublabel: "Behind the Quick and Apps screens, seen as an LCD. Desktop: the wallpaper of the monitor the phone is on"
+            label: "Hình nền điện thoại"
+            sublabel: "Hiển thị sau màn hình Quick và Ứng dụng. Desktop: dùng hình nền của màn hình đang chứa điện thoại"
             current: PanelImages.phoneMode
             options: [
-                { id: "off", label: "Off", icon: "hide_image" },
-                { id: "desktop", label: "Desktop", icon: "wallpaper" },
-                { id: "picture", label: "A picture", icon: "image" }
+                { id: "off", label: "Tắt", icon: "hide_image" },
+                { id: "desktop", label: "Màn hình nền", icon: "wallpaper" },
+                { id: "picture", label: "Một hình ảnh", icon: "image" }
             ]
             onPicked: id => {
                 if (id === "picture" && PanelImages.phonePath === "")
@@ -218,8 +218,8 @@ SettingsPage {
         SettingAction {
             visible: PanelImages.phoneMode === "picture"
             icon: "add_photo_alternate"
-            label: "Change the phone's picture"
-            detail: PanelImages.busy ? "Choosing…" : "Opens a file chooser"
+            label: "Đổi hình điện thoại"
+            detail: PanelImages.busy ? "Đang chọn…" : "Mở trình chọn tệp"
             busy: PanelImages.busy
             onActivated: PanelImages.pick("phone")
         }
@@ -227,8 +227,8 @@ SettingsPage {
         SettingAction {
             visible: PanelImages.phoneMode === "picture" && PanelImages.phone !== ""
             icon: "crop"
-            label: "Frame the phone's picture"
-            detail: "Choose which part of it shows"
+            label: "Điều chỉnh khung hình điện thoại"
+            detail: "Chọn phần hình ảnh sẽ hiển thị"
             onActivated: {
                 // The framer opens over the desktop; Settings (the phone) steps aside.
                 if (page.host)
@@ -238,13 +238,13 @@ SettingsPage {
         }
 
         SettingChoice {
-            label: "Picture picker"
-            sublabel: "The window that opens when you pick a picture (avatar, banner, phone wallpaper). Auto: KDE's if installed. GTK / system goes through the desktop portal and can be slow"
+            label: "Trình chọn ảnh"
+            sublabel: "Cửa sổ chọn ảnh đại diện, ảnh bìa hoặc hình nền điện thoại. Tự động: dùng KDE nếu đã cài. GTK / hệ thống sử dụng desktop portal và có thể chậm"
             current: SettingsService.get("files.chooser")
             options: [
-                { id: "auto", label: "Auto", icon: "auto_awesome" },
+                { id: "auto", label: "Tự động", icon: "auto_awesome" },
                 { id: "kdialog", label: "KDE", icon: "folder_open" },
-                { id: "zenity", label: "GTK / system", icon: "desktop_windows" },
+                { id: "zenity", label: "GTK / hệ thống", icon: "desktop_windows" },
                 { id: "yad", label: "yad", icon: "folder" }
             ]
             onPicked: id => SettingsService.set("files.chooser", id)
@@ -252,66 +252,66 @@ SettingsPage {
     }
 
     SectionCard {
-        title: "Launcher & lock"
+        title: "Trình mở ứng dụng và khóa"
 
         SettingToggle {
             icon: "search"
-            label: "Web suggestions"
-            detail: SettingsService.flag("launcher.webSuggestions") ? "Sent to DuckDuckGo" : "OFF"
+            label: "Gợi ý tìm kiếm web"
+            detail: SettingsService.flag("launcher.webSuggestions") ? "Gửi tới DuckDuckGo" : "TẮT"
             checked: SettingsService.flag("launcher.webSuggestions")
             onToggled: SettingsService.toggle("launcher.webSuggestions")
         }
 
         SettingToggle {
             icon: "content_paste"
-            label: "Clipboard history"
-            detail: SettingsService.flag("launcher.clipboard") ? "Recording" : "OFF"
+            label: "Lịch sử bộ nhớ tạm"
+            detail: SettingsService.flag("launcher.clipboard") ? "Đang ghi" : "TẮT"
             checked: SettingsService.flag("launcher.clipboard")
             onToggled: SettingsService.toggle("launcher.clipboard")
         }
 
         SettingChoice {
-            label: "Apps order"
-            sublabel: "Most used puts the apps you open most lately first, then the rest A to Z. It counts apps opened from the Apps screen, and moves when the screen next opens"
+            label: "Thứ tự ứng dụng"
+            sublabel: "Ưu tiên ứng dụng được mở nhiều gần đây, sau đó sắp xếp phần còn lại từ A đến Z. Chỉ tính ứng dụng mở từ màn hình Ứng dụng; thứ tự cập nhật khi mở lại màn hình"
             current: SettingsService.get("launcher.order")
             options: [
-                { id: "az", label: "A to Z", icon: "sort_by_alpha" },
-                { id: "used", label: "Most used", icon: "history" }
+                { id: "az", label: "A đến Z", icon: "sort_by_alpha" },
+                { id: "used", label: "Dùng nhiều nhất", icon: "history" }
             ]
             onPicked: id => SettingsService.set("launcher.order", id)
         }
 
         SettingChoice {
-            label: "Lockscreen style"
-            sublabel: "Gacha: the Project Sekai screen. Calendar: a printed poster with framed pictures from your wallpaper"
+            label: "Kiểu màn hình khóa"
+            sublabel: "Gacha: màn hình Project Sekai. Lịch: áp phích với các ảnh cắt từ hình nền"
             current: SettingsService.get("lock.style")
             options: [
                 { id: "gacha", label: "Gacha", icon: "stars" },
-                { id: "calendar", label: "Calendar", icon: "calendar_month" }
+                { id: "calendar", label: "Lịch", icon: "calendar_month" }
             ]
             onPicked: id => SettingsService.set("lock.style", id)
         }
 
         SettingChoice {
             visible: SettingsService.get("lock.style") === "calendar"
-            label: "Calendar pictures"
-            sublabel: "Auto looks at your wallpaper for the parts worth showing (needs ImageMagick); Fixed always shows the same spots"
+            label: "Hình ảnh lịch"
+            sublabel: "Tự động tìm phần hình nền phù hợp (cần ImageMagick); Cố định luôn hiển thị cùng vị trí"
             current: SettingsService.get("lock.crop")
             options: [
-                { id: "auto", label: "Auto", icon: "auto_awesome" },
-                { id: "fixed", label: "Fixed", icon: "crop" }
+                { id: "auto", label: "Tự động", icon: "auto_awesome" },
+                { id: "fixed", label: "Cố định", icon: "crop" }
             ]
             onPicked: id => SettingsService.set("lock.crop", id)
         }
 
         SettingChoice {
             visible: SettingsService.get("lock.style") === "calendar"
-            label: "Calendar colours"
-            sublabel: "Colour keeps your wallpaper's colours and prints your theme's inks around it; Black & white is the earlier monochrome poster"
+            label: "Màu sắc lịch"
+            sublabel: "Màu giữ nguyên màu hình nền và dùng màu chủ đề xung quanh; Đen trắng dùng áp phích đơn sắc"
             current: SettingsService.get("lock.tone")
             options: [
-                { id: "color", label: "Colour", icon: "palette" },
-                { id: "mono", label: "Black & white", icon: "contrast" }
+                { id: "color", label: "Màu", icon: "palette" },
+                { id: "mono", label: "Đen trắng", icon: "contrast" }
             ]
             onPicked: id => SettingsService.set("lock.tone", id)
         }
@@ -319,58 +319,58 @@ SettingsPage {
         SettingToggle {
             visible: SettingsService.get("lock.style") === "calendar"
             icon: "power_settings_new"
-            label: "Restart / Shut down keys"
-            detail: SettingsService.flag("lock.powerButtons") ? "On the Calendar lockscreen" : "OFF (Ctrl + Enter still sleeps)"
+            label: "Nút khởi động lại / tắt máy"
+            detail: SettingsService.flag("lock.powerButtons") ? "Trên màn hình khóa Lịch" : "TẮT (Ctrl + Enter vẫn đưa máy vào sleep)"
             checked: SettingsService.flag("lock.powerButtons")
             onToggled: SettingsService.toggle("lock.powerButtons")
         }
 
         SettingToggle {
             icon: "lyrics"
-            label: "Lyrics on the lockscreen"
+            label: "Lời bài hát trên màn hình khóa"
             detail: SettingsService.flag("lock.lyrics")
-                ? (SettingsService.get("lock.style") === "calendar" ? "Gacha lockscreen only" : "Asks the lyrics providers for the song that is playing")
-                : "OFF"
+                ? (SettingsService.get("lock.style") === "calendar" ? "Chỉ áp dụng cho màn hình khóa Gacha" : "Tìm lời bài hát đang phát từ các nhà cung cấp")
+                : "TẮT"
             checked: SettingsService.flag("lock.lyrics")
             onToggled: SettingsService.toggle("lock.lyrics")
         }
 
         SettingToggle {
             icon: "bedtime"
-            label: "Sleep the desktop while locked"
-            detail: SettingsService.flag("lock.sleepDesktop") ? "Widgets are unloaded and the audio tap stops; unlocking brings them back" : "OFF (everything keeps running while locked)"
+            label: "Tạm dừng desktop khi khóa"
+            detail: SettingsService.flag("lock.sleepDesktop") ? "Dỡ các tiện ích và ngừng thu âm thanh; mở khóa sẽ khôi phục" : "TẮT (mọi thứ tiếp tục chạy khi khóa)"
             checked: SettingsService.flag("lock.sleepDesktop")
             onToggled: SettingsService.toggle("lock.sleepDesktop")
         }
 
         SettingToggle {
             icon: "blur_on"
-            label: "Blur lock wallpaper"
-            detail: SettingsService.get("lock.style") === "calendar" ? "Gacha lockscreen only" : ""
+            label: "Làm mờ hình nền khóa"
+            detail: SettingsService.get("lock.style") === "calendar" ? "Chỉ áp dụng cho màn hình khóa Gacha" : ""
             checked: SettingsService.flag("lock.blur")
             onToggled: SettingsService.toggle("lock.blur")
         }
 
         SettingToggle {
             icon: "auto_awesome"
-            label: "Lockscreen animations"
-            detail: SettingsService.flag("lock.animations") ? (SettingsService.get("lock.style") === "calendar" ? "Gacha lockscreen only" : "Sparkles on (turn off to save GPU)") : "OFF (no sparkles, lighter on the GPU)"
+            label: "Hiệu ứng màn hình khóa"
+            detail: SettingsService.flag("lock.animations") ? (SettingsService.get("lock.style") === "calendar" ? "Chỉ áp dụng cho màn hình khóa Gacha" : "Bật hiệu ứng lấp lánh (tắt để giảm tải GPU)") : "TẮT (không có hiệu ứng lấp lánh, giảm tải GPU)"
             checked: SettingsService.flag("lock.animations")
             onToggled: SettingsService.toggle("lock.animations")
         }
 
         SettingToggle {
             icon: "fingerprint"
-            label: "Fingerprint unlock"
-            detail: SettingsService.flag("lock.fingerprint") ? "Scans alongside the password field (needs fprintd and enrolled prints)" : "OFF"
+            label: "Mở khóa bằng vân tay"
+            detail: SettingsService.flag("lock.fingerprint") ? "Quét đồng thời với ô mật khẩu (cần fprintd và vân tay đã đăng ký)" : "TẮT"
             checked: SettingsService.flag("lock.fingerprint")
             onToggled: SettingsService.toggle("lock.fingerprint")
         }
 
         SettingAction {
             icon: "lock"
-            label: "Lock now"
-            detail: "Lock the screen"
+            label: "Khóa ngay"
+            detail: "Khóa màn hình"
             onActivated: {
                 if (page.host)
                     page.host.closeRequested()
@@ -382,11 +382,11 @@ SettingsPage {
     // hypridle waits for these (IdleService.qml). A hypridle.conf that doesn't read
     // SekaiPop's file keeps its own times, so the switch comes first then.
     SectionCard {
-        title: "Idle & sleep"
+        title: "Nhàn rỗi và sleep"
 
         Text {
             width: page.fullWidth
-            text: "After how long without input. Keep Awake, and a video playing, hold all three off."
+            text: "Thời gian không tương tác trước khi thực hiện. Keep Awake và video đang phát sẽ ngăn cả ba hành động."
             color: Theme.pInkSub
             font.family: Theme.fontFamily
             font.pixelSize: 15
@@ -396,12 +396,12 @@ SettingsPage {
         SettingAction {
             visible: IdleService.linked === "no" || IdleService.linked === "missing"
             icon: "link"
-            label: "Use these times"
-            detail: IdleService.linking ? "Switching…"
+            label: "Sử dụng các mốc này"
+            detail: IdleService.linking ? "Đang chuyển…"
                 : IdleService.linkError !== "" ? IdleService.linkError
                 : IdleService.linked === "missing"
-                    ? "There is no ~/.config/hypr/hypridle.conf, so nothing locks or sleeps on its own. This makes one that uses these times"
-                    : "Your hypridle.conf has times of its own, so these do nothing yet. This switches it to them (its listeners are commented out; a copy is kept as hypridle.conf.sekaipop-bak)"
+                    ? "Không có ~/.config/hypr/hypridle.conf nên máy không tự khóa hoặc sleep. Tạo file dùng các mốc này"
+                    : "hypridle.conf có các mốc riêng nên cài đặt này chưa có tác dụng. Chuyển sang các mốc này (listener cũ được comment; bản sao lưu là hypridle.conf.sekaipop-bak)"
             busy: IdleService.linking
             onActivated: IdleService.link()
         }
@@ -409,7 +409,7 @@ SettingsPage {
         Text {
             visible: IdleService.linked === "yes" && !IdleService.running
             width: page.fullWidth
-            text: "hypridle isn't running, so none of these happen. It is started with Hyprland (execs.lua); start it with: hypridle &"
+            text: "hypridle chưa chạy nên các hành động này sẽ không xảy ra. Nó được khởi động cùng Hyprland (execs.lua); chạy thủ công bằng: hypridle &"
             color: Theme.pInkSub
             font.family: Theme.fontFamily
             font.pixelSize: 15
@@ -418,52 +418,52 @@ SettingsPage {
 
         SettingStepper {
             icon: "lock_clock"
-            label: "Lock after"
+            label: "Khóa sau"
             from: 0
             to: 120
             step: 1
-            suffix: " min"
+            suffix: " phút"
             specialValue: 0
-            specialText: "Never"
+            specialText: "Không bao giờ"
             value: SettingsService.get("idle.lock")
             onMoved: v => SettingsService.set("idle.lock", v)
         }
 
         SettingStepper {
             icon: "desktop_access_disabled"
-            label: "Screen off after"
+            label: "Tắt màn hình sau"
             from: 0
             to: 120
             step: 1
-            suffix: " min"
+            suffix: " phút"
             specialValue: 0
-            specialText: "Never"
+            specialText: "Không bao giờ"
             value: SettingsService.get("idle.screenOff")
             onMoved: v => SettingsService.set("idle.screenOff", v)
         }
 
         SettingStepper {
             icon: "bedtime"
-            label: SettingsService.get("idle.sleepAction") === "hibernate" ? "Hibernate after" : "Sleep after"
+            label: SettingsService.get("idle.sleepAction") === "hibernate" ? "Ngủ đông sau" : "Sleep sau"
             from: 0
             to: 240
             step: 5
-            suffix: " min"
+            suffix: " phút"
             specialValue: 0
-            specialText: "Never"
+            specialText: "Không bao giờ"
             value: SettingsService.get("idle.sleep")
             onMoved: v => SettingsService.set("idle.sleep", v)
         }
 
         SettingChoice {
-            label: "Sleep by"
+            label: "Chế độ sleep"
             sublabel: IdleService.canHibernate === "no"
-                ? "This machine can't hibernate as it is set up (it needs a swap at least as big as your memory, and resume from it): Hibernate would do nothing"
-                : "Suspend keeps your session in memory and wakes in a moment. Hibernate writes it to disk and powers off (needs a big enough swap)"
+                ? "Máy chưa được cấu hình để ngủ đông (cần swap ít nhất bằng RAM và cấu hình khôi phục): chọn ngủ đông sẽ không có tác dụng"
+                : "Tạm ngưng giữ phiên trong RAM và thức dậy nhanh. Ngủ đông ghi phiên xuống đĩa và tắt máy (cần đủ swap)"
             current: SettingsService.get("idle.sleepAction")
             options: [
-                { id: "suspend", label: "Suspend", icon: "bedtime" },
-                { id: "hibernate", label: "Hibernate", icon: "save" }
+                { id: "suspend", label: "Tạm ngưng", icon: "bedtime" },
+                { id: "hibernate", label: "Ngủ đông", icon: "save" }
             ]
             onPicked: id => SettingsService.set("idle.sleepAction", id)
         }
@@ -474,26 +474,26 @@ SettingsPage {
 
         SettingAction {
             icon: "refresh"
-            label: "Reload shell"
-            detail: "Rebuild every window"
+            label: "Tải lại shell"
+            detail: "Tạo lại mọi cửa sổ"
             onActivated: Quickshell.reload(true)
         }
 
         SettingAction {
             icon: "restart_alt"
-            label: "Reset settings"
-            detail: SettingsService.changedCount === 0 ? "Nothing changed"
-                : SettingsService.changedCount + (SettingsService.changedCount === 1 ? " change" : " changes")
+            label: "Đặt lại cài đặt"
+            detail: SettingsService.changedCount === 0 ? "Không có thay đổi"
+                : SettingsService.changedCount + (SettingsService.changedCount === 1 ? " thay đổi" : " thay đổi")
             onActivated: SettingsService.reset()
         }
     }
 
     SectionCard {
-        title: "Hooks"
+        title: "Hook"
 
         Text {
             width: page.fullWidth
-            text: "Run custom scripts when system events occur. Each value is passed as a separate argument. The input placeholders show the argument order."
+            text: "Chạy script tùy chỉnh khi có sự kiện hệ thống. Mỗi giá trị được truyền thành một đối số riêng. Phần gợi ý trong ô nhập cho biết thứ tự đối số."
             color: Theme.pInkSub
             font.family: Theme.fontFamily
             font.pixelSize: 15
